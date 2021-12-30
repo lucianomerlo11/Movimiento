@@ -1,0 +1,191 @@
+.navbar_logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 240px;
+}
+
+.logo{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.banner{
+    height: 500px;
+    border: 1px solid grey;
+    background-image: linear-gradient(to right, #000000, #2d2428, #54434f, #7a667d, #9e8cb0, #9f8ebe, #9d91cd, #9894dd, #7870c5, #584ead, #362b95, #04057c);
+}
+
+.banner__titulo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 5rem;
+}
+
+.titulo-nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2.3rem;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Bebas Neue', cursive;
+}
+
+
+.actividad{
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.actividad__funcional{
+    background-image: url(../recursos/imagenes/IMG_ACTIVIDAD_FUNCIONAL.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.actividad__funcional h2{
+    color: #fbc531;
+    background-color: black;
+    padding-bottom: 0%;
+}
+
+.actividad__adaptada{
+    background-image: url(../recursos/imagenes/IMG_ACTIVIDAD_ADAPTADA.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.actividad__adaptada h2{
+    color: #fbc531;
+    background-color: black;
+    padding-bottom: 0%;
+}
+
+.actividad__adaptada:hover{
+    background-image: url(../recursos/imagenes/IMG_ACTIVIDAD_ADAPTADA_BW.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+
+.actividad__zumba{
+    background-image: url(../recursos/imagenes/IMG_ACTIVIDAD_ZUMBA_BW.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.actividad__zumba:hover{
+    background-image: url(../recursos/imagenes/IMG_ACTIVIDAD_ZUMBA.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.actividad__zumba h2{
+    color: #fbc531;
+    background-color: black;
+    padding-bottom: 0%;
+} 
+
+.actividad__box{
+    background-image: url(../recursos/imagenes/IMG_ACTIVIDAD_BOX.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.actividad__box h2{
+    color: #fbc531;
+    background-color: black;
+    padding-bottom: 0%;
+}
+.actividad__personalizado{
+    background-image: url(../recursos/imagenes/IMG_ACTIVIDAD_PERZONALIZADA_BW.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.actividad__personalizado h2{
+    color: #fbc531;
+    background-color: black;
+    padding-bottom: 0%;
+}
+.actividad__ocr{
+    background-image: url(../recursos/imagenes/IMG_ACTIVIDA_OCR.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.actividad__ocr h2{
+    color: #fbc531;
+    background-color: black;
+    padding-bottom: 0%;
+}
+
+
+
+.banner__frase{
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.frase p{
+
+    font-family: 'Oooh Baby', cursive;
+    font-size: 5rem;
+    text-align: center;
+}
+
+span{
+    background-color: #fbc531;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.banner__novedades{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, #000000, #522728, #a05034, #de8c2a, #ffd700);
+}
+
+.novedades__titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 576px) {
+
+    h1{
+        font-size: 3rem;
+    }
+
+    .titulo__actividad{
+        color: white;
+    }
+
+    .frase p{
+        font-size: 2rem;
+
+    }
+}
+
