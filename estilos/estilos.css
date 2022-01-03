@@ -227,6 +227,21 @@ h2{
     text-align: center;
 }
 
+
+.footer{
+    background-color: black;
+    height: 30 px;
+    width: 100%;
+    padding: 0px;
+}
+
+.footer h4{
+    text-align: center;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    margin: 0px;
+}
+
 @media screen and (max-width: 576px) {
 
     h1{
