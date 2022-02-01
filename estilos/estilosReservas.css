@@ -25,7 +25,7 @@ h3 {
 
 /* From cssbuttons.io */
 
-button {
+.btn_reserva {
     align-items: center;
     background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
     border: 0;
@@ -50,12 +50,12 @@ button {
     transition: all .3s;
 }
 
-button:active,
-button:hover {
+.btn_reserva:active,
+.btn_reserva:hover {
     outline: 0;
 }
 
-button span {
+.btn_reserva span {
     background-color: rgb(5, 6, 45);
     padding: 16px 24px;
     border-radius: 6px;
@@ -64,11 +64,11 @@ button span {
     transition: 300ms;
 }
 
-button:hover span {
+.btn_reserva:hover span {
     background: none;
 }
 
-button:active {
+.btn_reserva:active {
     transform: scale(0.9);
 }
 

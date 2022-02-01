@@ -21,19 +21,68 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <div class="navbar_logo">
-                <img class="logo" src="../recursos/imagenes/IMG_LOGO.jfif" alt="" class="d-inline-block align-text-top" />
+            <div class="navbar_logo justify-content-start">
+                <img class="logo" src="../recursos/imagenes/IMG_LOGO.jfif" alt="" class="d-inline-block align-text-top">
                 <a class="navbar-brand titulo-nav" href="#">MOVIMIENTO</a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse justify-content-center paginas" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="../index.html">Principal</a>
                     <a class="nav-link" href="./reservas.html">Reservas</a>
                     <a class="nav-link active" href="#">Entrena con nosotros</a>
                     <a class="nav-link" href="./contacto.html">Contacto</a>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end login" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contenedor-modal">Ingresar</button>
+                    <div class="modal fade" id="contenedor-modal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Ingresar</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <div class="row">
+
+
+                                            <!-- EL FORM EMPIEZA ACA -->
+
+
+
+                                            <form class="row g-3 needs-validation" novalidate>
+                                                <div class="col-md-12">
+                                                    <label for="validationCustom01" class="form-label">Usuario</label>
+                                                    <input type="text" class="form-control" id="validationCustom01" required>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                    <label for="validationCustom02" class="form-label">Contraseña</label>
+                                                    <input type="password" class="form-control" id="validationCustom02" required>
+                                                    <div class="valid-feedback">
+                                                        Looks good!
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button class="btn btn-primary" type="submit">Guardar</button>
+                                    </form>
+
+
+                                    <!-- EL FORM TERMINA ACA -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="nav-link" href="./registrarUsuario.html">Registrarse</a>
                 </div>
             </div>
         </div>
@@ -56,12 +105,12 @@
                             <div class="info_plan">
                                 <h1>PASE LIBRE</h1>
                                 <hr>
-                                <h2>$3000</h2>
+                                <h2 id="precioPaseLibre">$3000</h2>
                                 <hr>
                                 <p>
                                     Podes asistir a todas las clases, en cualquier horario, a cualquier actividad y podes repetir la clase que quieras en el mismo
                                 </p>
-                                <button type="button" class="btn btn-primary btn_comprar">ADQUIRIR</button>
+                                <button onclick="" id="btnAdquirirPaseLibre" type="button" class="btn btn-primary btn_comprar">ADQUIRIR PASE LIBRE</button>
                             </div>
                         </a>
                     </div>
@@ -75,11 +124,11 @@
                             <div class="info_plan">
                                 <h1>Plan Perzonalizado</h1>
                                 <hr>
-                                <h2>$3500</h2>
+                                <h2 id="precioPerzonalizado">$3500</h2>
                                 <hr>
                                 <p>Planificamos una rutina personal en base a tus objetivos. Podes asistir al gimnasio para realizarla bajo supervisión del profe. Esta rutina se actualiza cada dos semanas.
                                 </p>
-                                <button type="button" class="btn btn-primary btn_comprar">ADQUIRIR</button>
+                                <button onclick="" id="btnAdquirirPlanPerzonalizado" type="button" class="btn btn-primary btn_comprar">ADQUIRIR PLAN PERSONALIZADO</button>
                             </div>
                         </a>
                     </div>
@@ -93,11 +142,11 @@
                             <div class="info_plan">
                                 <h1>Gimnasia Adaptada</h1>
                                 <hr>
-                                <h2>$2000</h2>
+                                <h2 id="precioGimAdap">$2000</h2>
                                 <hr>
                                 <p>Es una clase destinada a personas con poca movilidad motriz, discapacidad, personas de tercera edad que quieren estar en movimiento
                                 </p>
-                                <button type="button" class="btn btn-primary btn_comprar">ADQUIRIR</button>
+                                <button onclick="" id="btnAdquirirGimAdap" type="button" class="btn btn-primary btn_comprar">ADQUIRIR GIMNASIA ADAPTADA</button>
                             </div>
                         </a>
                     </div>
@@ -111,11 +160,11 @@
                             <div class="info_plan">
                                 <h1>Plan Familiar</h1>
                                 <hr>
-                                <h2>$8000</h2>
+                                <h2 id="precioPlanFamiliar">$8000</h2>
                                 <hr>
                                 <p>Este plan es aplicado para un grupo familiar de 4 personas, en Movimiento entrena toda la familia
                                 </p>
-                                <button type="button" class="btn btn-primary btn_comprar">ADQURIR</button>
+                                <button onclick="" id="btnAdquirirPlanFamiliar" type="button" class="btn btn-primary btn_comprar">ADQURIR PLAN FAMILIAR</button>
                             </div>
                         </a>
                     </div>
@@ -135,7 +184,7 @@
             </div>
         </div>
     </div>
-
+    <script src="../codigo/entrenaConNosotros.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
