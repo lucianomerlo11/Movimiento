@@ -11,6 +11,10 @@ class DetalleFactura {
         this.plan = plan;
         this.precio = precio;
     }
+
+    getPrecio(){
+        return this.precio;
+    }
 }
 
 let carrito = [];
@@ -19,7 +23,7 @@ function comprarItem(planSeleccionado, precioPlan) {
     let fecha = new Date();
 
 
-    carrito.push(new(
+    carrito.push(new Factura(
         `${fecha.getDate() + 1}-${fecha.getMonth()}-${fecha.getFullYear()}`,
         `${fecha.getHours()}:${fecha.getMinutes()}`,
         new DetalleFactura(
@@ -28,10 +32,24 @@ function comprarItem(planSeleccionado, precioPlan) {
         )
     ))
 
-    console.log(carrito)
+    comprarPlanes(carrito);
+}
+
+function comprarPlanes(carrito){
+    if (carrito.length > 0) {
+        document.getElementById("btnCarrito").innerHTML = "Comprar planes"
+        let total = 0;
+        for (let i = 0; i < carrito.length; i++) {
+            total = total + carrito[i].DetalleFactura.precio;
+            console.log(total)
+        }
+    }
+    else{
+        document.getElementById("btnCarrito").innerHTML = ""
+    }
 }
 
 
-const btnAdquirirPaseLibre = document.getElementById("btnAdquirirPaseLibre");
 
-btnAdquirirPaseLibre.addEventListener("click", comprarItem("PaseLibre", "2000"))
+
+
