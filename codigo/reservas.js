@@ -18,8 +18,9 @@ class Reserva {
 
 
 let btnConsulta = document.getElementById("btn_consultar");
-
 let cupoReserva = 14;
+let arrayReservas = [];
+
 
 function consultar() {
 
@@ -54,25 +55,25 @@ function generarReserva() {
         // let cupoReserva = 14;
         let dia = document.getElementById("dia").value;
         if (dia == 'maniana') {
-            dia = "Mañana"
+            dia = "Mañana";
         }
         let turno = document.getElementById("turno").value;
         let hora = document.getElementById("hora").value;
         let tipoClase = document.getElementById("tipoClase").value;
 
 
-        document.getElementById("tituloActividad").innerHTML = `Clase: ${tipoClase}`
-        document.getElementById("turnoReserva").innerHTML = `Turno: ${turno}`
-        document.getElementById("diaReserva").innerHTML = `Dia: ${dia}`
-        document.getElementById("cupo").innerHTML = `Cupo: ${cupoReserva}`
-        document.getElementById("horaActividad").innerHTML = `Hora: ${hora}`
+        document.getElementById("tituloActividad").innerHTML = `Clase: ${tipoClase}`;
+        document.getElementById("turnoReserva").innerHTML = `Turno: ${turno}`;
+        document.getElementById("diaReserva").innerHTML = `Dia: ${dia}`;
+        document.getElementById("cupo").innerHTML = `Cupo: ${cupoReserva}`;
+        document.getElementById("horaActividad").innerHTML = `Hora: ${hora}`;
     } else {
-        alert("No se llenaron los campos de la reserva")
+        alert("No se llenaron los campos de la reserva");
     }
 
 }
 
-let arrayReservas = [];
+
 
 function reservar() {
     alert("Reserva confirmada");
@@ -93,7 +94,11 @@ function reservar() {
                 document.getElementById("turnoReserva").innerHTML
             )
         )
-    )
+    );
+
+
+    
 
     console.log(arrayReservas);
 }
+
