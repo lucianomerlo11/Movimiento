@@ -205,7 +205,6 @@ function actualizarListadoReservas(){
 
 
 function realizarReserva(){    
-
     for (let i = 0; i < listadoReservas.length; i++) {
         for (let j = 0; j < turnos.length; j++) {
             if (listadoReservas[i].id == turnos[j].id){
