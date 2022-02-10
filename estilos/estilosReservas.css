@@ -1,104 +1,82 @@
-h2,
-h3 {
-    text-align: center;
-}
-
-.carta {
-    height: 220px;
-    border: 1px solid black;
-    border-radius: 15px;
-    margin: 10px 0px 10px 0px;
-}
-
-.adaptada {
-    height: 250px;
-}
-
-.tipoClase,
-.turnos {
+#contenedor-turnos {
+    /* max-width: 1200px; */
+    margin: 10px auto;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.turno {
+    /* max-width: 30%; */
+    padding: 10px;
+    margin-bottom: 20px;
+    /* box-shadow: 2px 6px 3px 3px rgba(0, 0, 0, 0.3); */
+}
+
+.misReservas{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-
-/* From cssbuttons.io */
-
-.btn_reserva {
-    align-items: center;
-    background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
-    border: 0;
-    border-radius: 8px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
-    font-family: Phantomsans, sans-serif;
-    font-size: 18px;
-    justify-content: center;
-    line-height: 1em;
-    max-width: 100%;
-    min-width: 140px;
-    padding: 3px;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all .3s;
+#btnMisReservas{
+    max-height: 40px;
 }
 
-.btn_reserva:active,
-.btn_reserva:hover {
-    outline: 0;
-}
-
-.btn_reserva span {
-    background-color: rgb(5, 6, 45);
-    padding: 16px 24px;
-    border-radius: 6px;
+.modal-contenedor {
+    position: fixed;
+    top: 0;
     width: 100%;
-    height: 100%;
-    transition: 300ms;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s;
+    opacity: 0;
+    visibility: hidden;
 }
 
-.btn_reserva:hover span {
-    background: none;
+/* .modal-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 5;
 }
 
-.btn_reserva:active {
-    transform: scale(0.9);
+.modal-reserva {
+    position: relative;
+    background-color: white;
+    min-width: 500px;
+    padding: 20px;
+    margin-top: -100%;
+    transition: all .5s;
 }
 
+.modal-active .modal-carrito {
+    margin-top: 0;
+}
 
-/* From cssbuttons.io */
-
-.btn_turno {
-    margin: 10px 0px 10px 0px;
-    padding: 1.3em 3em;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    font-weight: 500;
-    color: #000;
-    background-color: #fff;
+.modal-reserva h3 {
+    color: rgb(225, 76, 65);
+    padding-bottom: 5px;
+}
+.modal-reserva #btnMisReservasCerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: rgb(225, 76, 65);
     border: none;
-    border-radius: 45px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
+    background-color: white;
+}
+.modal-reserva #btnMisReservasCerrar:hover {
     cursor: pointer;
+}
+.modal-reserva #btnMisReservasCerrar:focus {
     outline: none;
 }
+.modal-reserva .dia {
+    padding-top: 10px;
 
-.btn_turno:hover {
-    background-color: #2EE59D;
-    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-    color: #fff;
-    transform: translateY(-7px);
-}
-
-.btn_turno:active {
-    transform: translateY(-1px);
-}
+} */

@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +17,8 @@
     <link rel="stylesheet" href="../estilos/estilos.css">
     <link rel="stylesheet" href="../estilos/estilosReservas.css">
     <title>Movimiento</title>
+
+    <script src="https://kit.fontawesome.com/1fd5e0b442.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -49,12 +54,7 @@
                                 <div class="modal-body">
                                     <div class="container">
                                         <div class="row">
-
-
                                             <!-- EL FORM EMPIEZA ACA -->
-
-
-
                                             <form class="row g-3 needs-validation" novalidate>
                                                 <div class="col-md-12">
                                                     <label for="usuario" class="form-label">Usuario</label>
@@ -75,8 +75,6 @@
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                     <button class="btn btn-primary" id="logIn" type="submit" onclick="validarUsuario()" >Ingresar</button>
                                     </form>
-
-
                                     <!-- EL FORM TERMINA ACA -->
                                 </div>
                             </div>
@@ -87,13 +85,64 @@
             </div>
         </div>
     </nav>
+
+
+
+
+
+
+
     <!-- RESERVAS -->
 
-    <h1 style="text-align: center;">RESERVAS</h1>
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
+                <div class="contenedor-mis-reservas d-flex justify-content-between">
+                    <h1>RESERVAS</h1>
+                    <div class="misReservas">
+                        <button type="button" class="btn btn-outline-primary" id="btnMisReservas" data-bs-toggle="modal" data-bs-target="#modal-reservas">
+                            Mis Reservas <span class="badge bg-secondary" id="contadorReserva">0</span>
+                          </button>
+                          <div class="modal" id="modal-reservas" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog" id="modal-dialog">
+                              <div class="modal-content" id="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Mis Reservas</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="contenedor-mis-reservas">                                    
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Día</th>
+                                            <th scope="col">Hora</th>
+                                            <th scope="col">Clase</th>
+                                            <th scope="col">Acción</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="contenido-tabla">
+                                        </tbody>
+                                      </table>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCancelarReserva">Cancelar</button>
+                                  <button class="btn btn-primary" data-bs-dismiss="modal" type="buttton" id="btnRealizarReserva" onclick="realizarReserva()">Reservar</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+
+                </div>
+            </div>    
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
                 <div class="consultar-turno">
                     <!-- Seleccion de dia-->
                     <div class="col-md-4">
@@ -110,7 +159,7 @@
                     <!-- Seleccion de turno -->
                     <div class="col-md-4">
                         <label for="turno" class="form-label">TURNO</label>
-                        <select id="turno" class="form-select" onchange="obtenerHoraPorTurno()">
+                        <select id="turno" class="form-select">
                             <option value="" selected></option>
                             <option value="maniana" >MAÑANA</option>
                             <option value="tarde">TARDE</option>
@@ -135,40 +184,18 @@
                     <div class="col-md-4">
                         <label for="hora" class="form-label">HORARIO</label>
                         <select id="hora" class="form-select">
-                            <!-- MAÑANA -->
-                            <option value="" selected></option>
-                            <option value="8" >8:00</option>
-                            <option value="9">9:00</option>
-                            <option value="10">10:00</option>
-                            <!-- TARDE -->
-                            <option value="16">16:00</option>
-                            <option value="17">17:00</option>
-                            <option value="18">18:00</option>
-                            <!-- NOCHE -->
-                            <option value="19">19:00</option>
-                            <option value="20">20:00</option>
-                            <option value="21">21:00</option>
+
                         </select>
-                    </div>
-
-                    <div class="col-md-4">
-                        <section id="contenedor-turnos">
-                        </section>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">Special title treatment</h5>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
+                    </div> 
+                </div> 
+            </div> 
+            <div class="col-md-9">
+                <main id="contenedor-turnos">
+                </main>
             </div>
         </div>
     </div>
+            
 
     <!-- FOOTER -->
     <div class="container-fluid">
@@ -181,10 +208,13 @@
         </div>
     </div>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="../codigo/turnos.js"></script>
     <script src="../codigo/reservas.js"></script>
     <script src="../codigo/validacionFormLogin.js"></script>
-    <script src="../codigo/turnos.js"></script>
+    <!-- <script src="../codigo/modal.js"></script> -->
+
 </body>
 
 </html>
