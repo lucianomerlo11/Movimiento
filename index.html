@@ -36,7 +36,7 @@
             </div>
             <div class="collapse navbar-collapse justify-content-end login" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contenedor-modal">Ingresar</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contenedor-modal" id="btnIngresar">Ingresar</button>
                     <div class="modal fade" id="contenedor-modal" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -47,12 +47,7 @@
                                 <div class="modal-body">
                                     <div class="container">
                                         <div class="row">
-
-
                                             <!-- EL FORM EMPIEZA ACA -->
-
-
-
                                             <form class="row g-3 needs-validation" novalidate>
                                                 <div class="col-md-12">
                                                     <label for="usuario" class="form-label">Usuario</label>
@@ -73,8 +68,6 @@
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                     <button class="btn btn-primary" id="logIn" type="submit" onclick="validarUsuario()" >Ingresar</button>
                                     </form>
-
-
                                     <!-- EL FORM TERMINA ACA -->
                                 </div>
                             </div>
