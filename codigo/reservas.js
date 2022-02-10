@@ -1,3 +1,5 @@
+// INSTANCIAS DE CONSTANTES PARA INTERACTUAR CON EL DOM
+
 const contenedorTurno = document.getElementById("contenedor-turnos");
 const contenedorListado = document.getElementById("listado-contenedor");
 const btnMisReservas = document.getElementById("btnMisReservas");
@@ -6,17 +8,20 @@ const btnRealizarReserva = document.getElementById("btnRealizarReserva");
 const modalReservas = document.getElementById("modal-reservas");
 
 
+// INSTANCIAS DE CONSTANTES PARA ESTABLECER FILTROS
 const select_dia = document.getElementById("dia");
 const select_turno = document.getElementById("turno");
 const select_tipoClase = document.getElementById("tipoClase");
 const select_hora =  document.getElementById("hora");
 
-
+// INSTANCIAS DE VARIABLES PARA REALIZAR CALCULOS
 
 let listadoReservas = [];
 let nroReserva = 0;
 let contadorReserva = document.getElementById("contadorReserva");
 
+
+// FILTROS
 
 select_turno.addEventListener('change', ()=>{
     select_hora.innerHTML = "";
@@ -157,7 +162,6 @@ function mostrarTurnos(array) {
 
 
         btnReservar.addEventListener("click", () =>{
-            // console.log(turno.id);
             agregarReservasAlListado(turno.id);
             
         })
@@ -195,8 +199,6 @@ function agregarReservasAlListado(id){
         listadoReservas = listadoReservas.filter(item => item.id != turno.id);
         actualizarListadoReservas();
     })
-
-    // btnRealizarReserva.addEventListener('click', realizarReserva(listadoReservas))
 }
 
 function actualizarListadoReservas(){
