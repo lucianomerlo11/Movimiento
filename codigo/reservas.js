@@ -6,6 +6,7 @@ const btnMisReservas = document.getElementById("btnMisReservas");
 const tbodyContenidoTabla = document.getElementById("contenido-tabla");
 const btnRealizarReserva = document.getElementById("btnRealizarReserva");
 const modalReservas = document.getElementById("modal-reservas");
+const guardarReservasLS = (key, value) => {localStorage.setItem(key, value)};
 
 
 // INSTANCIAS DE CONSTANTES PARA ESTABLECER FILTROS
@@ -19,9 +20,15 @@ const select_hora =  document.getElementById("hora");
 let listadoReservas = [];
 let nroReserva = 0;
 let contadorReserva = document.getElementById("contadorReserva");
+let carritoStorage = [];
 
+
+
+addEventListener('DOMContentLoaded', mostrarTurnos(turnos))
 
 // FILTROS
+
+// UTILIZAR LS CON LOS SELECT
 
 select_turno.addEventListener('change', ()=>{
     select_hora.innerHTML = "";
@@ -134,12 +141,37 @@ select_hora.addEventListener('change',()=>{
     else{
         mostrarTurnos(turnos);
     }
-})
+})    
 
-mostrarTurnos(turnos);
+
 
 function mostrarTurnos(array) {
     contenedorTurno.innerHTML = "";
+    tbodyContenidoTabla.innerHTML = "";
+    
+
+    if (localStorage.getItem("carrito")) {
+        btnMisReservas.disabled = false;
+        carritoStorage = JSON.parse(localStorage.getItem("carrito"));
+        // CAMBIOOOOO
+        console.log(carritoStorage)
+        // CAMBIOOOOO
+        carritoStorage.map((reserva)=>{
+        agregarItemCarrito(reserva);
+        actualizarCarrito(carritoStorage);
+
+            let btnEliminar = document.getElementById(`btnEliminarReserva${reserva.id}`);
+
+            btnEliminar.addEventListener('click', () => {
+            
+                let columnaEliminar = btnEliminar.parentElement;
+                columnaEliminar.parentElement.remove();
+            
+                carritoStorage = carritoStorage.filter(item => item.id != reserva.id);
+                actualizarCarrito(carritoStorage);
+            })
+        })
+    }
 
     array.forEach(turno => {
         let div = document.createElement('div');
@@ -148,11 +180,10 @@ function mostrarTurnos(array) {
         `<div class="card" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">${turno.clase}</h5>
-              <p class="card-text">Día: ${turno.dia}</p>
-              <p class="card-text">Turno: ${turno.turno}</p>
-              <p class="card-text">Horario: ${turno.horario}</p>
-              <p class="card-text">Cupo: ${turno.cupo}</p>
-              <a id="btnReservar${turno.id}" class="btn btn-primary">Reservar</a>
+              <p class="card-text"><span class="titulo_Text">Día:</span> ${turno.dia}</p>
+              <p class="card-text"><span class="titulo_Text">Turno:</span> ${turno.turno}</p>
+              <p class="card-text"><span class="titulo_Text">Horario:</span> ${turno.horario}</p>
+              <a id="btnReservar${turno.id}" class="btn btn-primary btnReserva">Reservar</a>
             </div>
         </div>`
 
@@ -160,73 +191,100 @@ function mostrarTurnos(array) {
 
         let btnReservar = document.getElementById(`btnReservar${turno.id}`);
 
-
         btnReservar.addEventListener("click", () =>{
-            agregarReservasAlListado(turno.id);
-            
+            btnMisReservas.disabled = false;
+            let reservasAux = JSON.parse(localStorage.getItem("carrito"));
+            if (reservasAux) {
+                let resultado = reservasAux.some((turnoReservado) => turno.id == turnoReservado.id);
+                if (resultado) {
+                    alertar("Ups!", "error", "Ya tiene una reserva para este turno");
+                    
+                }
+                else{
+                    agregarReservasAlListado(turno.id); 
+                }
+            }
+            else{
+                agregarReservasAlListado(turno.id); 
+            }
+
+             
         })
     });
 }
 
+// CAMBIOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
 function agregarReservasAlListado(id){
 
     let turno = turnos.find(turno => turno.id == id);
+
     listadoReservas.push(turno);
-    actualizarListadoReservas()
-    
-    let tr = document.createElement('tr');
-    tr.className = 'contenido-tabla';
-    tr.innerHTML = `
-    <th scope="row">${nroReserva = nroReserva + 1}</th>
-    <td>${turno.dia}</td>
-    <td>${turno.horario}</td>
-    <td>${turno.clase}</td>
-    <td><a id="btnEliminarReserva${turno.id}" class="btn btn-danger">Eliminar</a></td>
-    `;
-
-
-    tbodyContenidoTabla.appendChild(tr);
-    
-
+    carritoStorage.push(turno);
+    actualizarCarrito(carritoStorage);
+    agregarItemCarrito(turno);
     let btnEliminar = document.getElementById(`btnEliminarReserva${turno.id}`);
-
     btnEliminar.addEventListener('click', () => {
 
         let columnaEliminar = btnEliminar.parentElement;
         columnaEliminar.parentElement.remove();
 
-
-        listadoReservas = listadoReservas.filter(item => item.id != turno.id);
-        actualizarListadoReservas();
+        carritoStorage = carritoStorage.filter(item => item.id != turno.id);
+        actualizarCarrito(carritoStorage);
     })
 }
 
-function actualizarListadoReservas(){
-    contadorReserva.innerText = listadoReservas.length;
-}
+
 
 
 function realizarReserva(){    
-    for (let i = 0; i < listadoReservas.length; i++) {
-        for (let j = 0; j < turnos.length; j++) {
-            if (listadoReservas[i].id == turnos[j].id){
-                if(turnos[j].cupo > 0) {
-                    turnos[j].cupo = turnos[j].cupo - 1;
-                }
-                else{
-                    alert(`No hay lugar para ${listadoReservas[i].clase} el día ${listadoReservas[i].dia} en el horario ${listadoReservas[i].horario}`)
-                }
-            }
-        }
-        
-    }
-     
     contenedorTurno.innerHTML = "";
+    listadoReservas = [];
+    actualizarCarrito([]);
     mostrarTurnos(turnos);
-    actualizarListadoReservas()
-    alert("Reservar gestionada con exito");
+    contadorReserva.innerText == 0;
+    alertar("Reservar gestionada con exito", "success", "Te esperamos para entrenar");
+}
+
+function cancelarReserva(){
+    contenedorTurno.innerHTML = "";
+    listadoReservas = [];
+    carritoStorage = [];
+    actualizarCarrito([]);
+    mostrarTurnos(turnos);
+    contadorReserva.innerText == 0;
+    alertar("Reserva cancelada", "error", "Te seguimos esperando para entrenar");
+}
+
+function agregarItemCarrito(reserva){
+    let tr = document.createElement('tr');
+    tr.className = 'contenido-tabla';
+    tr.innerHTML = `
+    <th scope="row">${nroReserva++}</th>
+    <td>${reserva.dia}</td>
+    <td>${reserva.horario}</td>
+    <td>${reserva.clase}</td>
+    <td><a id="btnEliminarReserva${reserva.id}" class="btn btn-danger">Eliminar</a></td>
+    `;
+    tbodyContenidoTabla.appendChild(tr);
 }
 
 
+function actualizarCarrito(carrito) {
+    contadorReserva.innerText = carrito.length;
+    if (contadorReserva.innerText == 0) {
+        btnMisReservas.disabled = true;
+    }
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
 
 
+function alertar(tituloAlerta, tipoAlerta, mensajeAlerta){
+    swal.fire(
+        {
+            title: tituloAlerta,
+            text: mensajeAlerta,
+            icon: tipoAlerta
+        }
+    )
+}

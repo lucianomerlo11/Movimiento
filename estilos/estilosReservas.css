@@ -38,45 +38,26 @@
     visibility: hidden;
 }
 
-/* .modal-active {
-    opacity: 1;
-    visibility: visible;
-    z-index: 5;
+.card{
+    border: 2px solid black;
 }
 
-.modal-reserva {
-    position: relative;
-    background-color: white;
-    min-width: 500px;
-    padding: 20px;
-    margin-top: -100%;
-    transition: all .5s;
+
+.card-title{
+    text-align: center;
+    background-color: yellow;
 }
 
-.modal-active .modal-carrito {
-    margin-top: 0;
+.titulo_Text{
+    font-weight: bold;
+    text-decoration: underline;
 }
 
-.modal-reserva h3 {
-    color: rgb(225, 76, 65);
-    padding-bottom: 5px;
+.btnReserva{
+    width: 100%;
 }
-.modal-reserva #btnMisReservasCerrar {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 20px;
-    color: rgb(225, 76, 65);
-    border: none;
-    background-color: white;
-}
-.modal-reserva #btnMisReservasCerrar:hover {
-    cursor: pointer;
-}
-.modal-reserva #btnMisReservasCerrar:focus {
-    outline: none;
-}
-.modal-reserva .dia {
-    padding-top: 10px;
 
-} */
+
+
+
+

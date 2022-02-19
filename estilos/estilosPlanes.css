@@ -1,21 +1,36 @@
-p{
-    font-family: 'Dongle', sans-serif;
+.contenedor-mis-planes{
+    flex-wrap: wrap;
 }
 
 
-.btn_comprar {
-    display: block;
-    width: 100%;
-    font-family: 'Dongle', sans-serif;
-    font-size: 1.6rem;
-}
-
-.info_plan {
+.plan-seleccionado{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /* border: 1px solid black; */
+    padding: 10px;
+}
+
+
+.misPlanes{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
+
+
+
+.carrito{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2rem;
+}
+
+
 
 @import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
 * {
@@ -60,6 +75,7 @@ a {
     color: #8e44ad;
     border-radius: 1em;
     padding: 1em;
+    margin-top: 30px;
     margin-left: 2em;
     display: flex;
     align-items: flex-end;
@@ -84,10 +100,14 @@ a {
 }
 
 .card p {
-    font-size: 0.75em;
-    font-family: 'Open Sans';
-    /* margin-top: 0.5em; */
-    line-height: 2em;
+    font-size: 2rem;
+    font-family: 'Dongle', sans-serif;
+}
+
+.card button{
+    font-family: 'Dongle', sans-serif;
+    font-size: 1.6rem;
+    width: 100%;
 }
 
 .card .tags {
@@ -98,9 +118,6 @@ a {
     font-size: 0.75em;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 0.3rem;
-    /* padding: 0 0.5em; */
-    /* margin-right: 0.5em; */
-    /* line-height: 1.5em; */
     transition: all, var(--transition-time);
 }
 
@@ -130,11 +147,6 @@ a {
 }
 
 
-/* .card:after {
-    background: white;
-    width: 200%;
-    height: 200%;
-} */
 
 .card:hover {
     color: var(--color);
@@ -217,5 +229,7 @@ a {
     }
     .card {
         margin-left: 0px;
+        width:  18em;
+        height: 31em;
     }
 }

@@ -187,32 +187,6 @@ h2{
 }
 
 
-
-
-/* .banner__novedades{
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(to right, #000000, #522728, #a05034, #de8c2a, #ffd700);
-}
-
-.novedades__titulo{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.novedad__imagen{
-    height: 250px;
-    width: 100%;
-    background-image: url(../recursos/imagenes/IMG_NOVEDADES_OLIMPO_RACE.jfif);
-    background-repeat: no-repeat;
-    background-size: cover;
-} */
-
 .comentarios{
     height: 400px;
     display: flex;

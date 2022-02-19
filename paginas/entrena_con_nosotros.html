@@ -49,12 +49,7 @@
                                 <div class="modal-body">
                                     <div class="container">
                                         <div class="row">
-
-
                                             <!-- EL FORM EMPIEZA ACA -->
-
-
-
                                             <form class="row g-3 needs-validation" novalidate>
                                                 <div class="col-md-12">
                                                     <label for="usuario" class="form-label">Usuario</label>
@@ -75,8 +70,6 @@
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                     <button class="btn btn-primary" id="logIn" type="submit" onclick="validarUsuario()" >Ingresar</button>
                                     </form>
-
-
                                     <!-- EL FORM TERMINA ACA -->
                                 </div>
                             </div>
@@ -89,87 +82,59 @@
         </div>
     </nav>
 
+
+
+
     <!-- PLANES -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="contenedor-mis-planes d-flex justify-content-between">
+                    <h1>ENTRENA CON NOSOTROS</h1>
+                    <div class="misPlanes">
+                        <button type="button" class="btn btn-outline-primary carrito" id="btnMisPlanes" data-bs-toggle="modal" data-bs-target="#modal-planes">
+                            Mis Planes <span><img src="../recursos/imagenes/ENTRENA_CON_NOSOTROS/shopping-cart.svg" class="me-3"></span> <span class="badge bg-secondary" id="contadorPlanes">0</span>
+                          </button>
+                          <div class="modal" id="modal-planes" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog" id="modal-dialog">
+                              <div class="modal-content" id="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Mis Reservas</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="contenedor-mis-planes">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Plan</th>
+                                            <th scope="col">Precio</th>
+                                            <th scope="col">Cantidad</th>
+                                            <th scope="col">Acción</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="contenido-tabla">
+                                        </tbody>
+                                      </table>      
+                                      <p>Precio Total: <span id="precioTotal"></span></p>                           
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCancelarReserva" onclick="cancelarCompra()">Cancelar</button>
+                                  <button class="btn btn-primary" data-bs-dismiss="modal" type="buttton" id="btnRealizarReserva" onclick="realizarCompra()">Comprar</button>
+                                </div>
+                              </div>
+                            </div>
+                    </div>
+
+                </div>
+            </div>    
+        </div>
+    </div>
+
+
 
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1>NUESTROS PLANES</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="cards-wrapper">
-                    <div class="card-grid-space">
-                        <a class="card" style="background-color: yellow;">
-                            <div class="info_plan">
-                                <h1>PASE LIBRE</h1>
-                                <hr>
-                                <h2 id="precioPaseLibre">$3000</h2>
-                                <hr>
-                                <p>
-                                    Podes asistir a todas las clases, en cualquier horario, a cualquier actividad y podes repetir la clase que quieras en el mismo
-                                </p>
-                                <button onclick="comprarItem('PaseLibre', '3000')" id="btnAdquirirPaseLibre" type="button" class="btn btn-primary btn_comprar">ADQUIRIR PASE LIBRE</button>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="cards-wrapper">
-                    <div class="card-grid-space">
-                        <!-- <a class="card" style="--bg-img: url(https://images.wallpapersden.com/image/download/php-developer_a2xqaW2UmZqaraWkpJRmaGhrrWxrbQ.jpg)"> -->
-                        <a class="card" style="background-color: yellow;">
-                            <div class="info_plan">
-                                <h1>Plan Perzonalizado</h1>
-                                <hr>
-                                <h2 id="precioPerzonalizado">$3500</h2>
-                                <hr>
-                                <p>Planificamos una rutina personal en base a tus objetivos. Podes asistir al gimnasio para realizarla bajo supervisión del profe. Esta rutina se actualiza cada dos semanas.
-                                </p>
-                                <button onclick="comprarItem('PlanPersonzalizado', '3500')" id="btnAdquirirPlanPerzonalizado" type="button" class="btn btn-primary btn_comprar">ADQUIRIR PLAN PERSONALIZADO</button>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="cards-wrapper">
-                    <div class="card-grid-space">
-                        <!-- <a class="card" style="--bg-img: url(https://images.wallpapersden.com/image/download/php-developer_a2xqaW2UmZqaraWkpJRmaGhrrWxrbQ.jpg)"> -->
-                        <a class="card" style="background-color: yellow;">
-                            <div class="info_plan">
-                                <h1>Gimnasia Adaptada</h1>
-                                <hr>
-                                <h2 id="precioGimAdap">$2000</h2>
-                                <hr>
-                                <p>Es una clase destinada a personas con poca movilidad motriz, discapacidad, personas de tercera edad que quieren estar en movimiento
-                                </p>
-                                <button onclick="" id="btnAdquirirGimAdap" type="button" class="btn btn-primary btn_comprar">ADQUIRIR GIMNASIA ADAPTADA</button>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="cards-wrapper">
-                    <div class="card-grid-space">
-                        <!-- <a class="card" style="--bg-img: url(https://images.wallpapersden.com/image/download/php-developer_a2xqaW2UmZqaraWkpJRmaGhrrWxrbQ.jpg)"> -->
-                        <a class="card" style="background-color: yellow;">
-                            <div class="info_plan">
-                                <h1>Plan Familiar</h1>
-                                <hr>
-                                <h2 id="precioPlanFamiliar">$8000</h2>
-                                <hr>
-                                <p>Este plan es aplicado para un grupo familiar de 4 personas, en Movimiento entrena toda la familia
-                                </p>
-                                <button onclick="comprarItem('Plan Familiar', '8000')" id="btnAdquirirPlanFamiliar" type="button" class="btn btn-primary btn_comprar">ADQURIR PLAN FAMILIAR</button>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="row" id="contenedor-plan">
         </div>
     </div>
 
@@ -186,9 +151,12 @@
             </div>
         </div>
     </div>
-    <script src="../codigo/validacionFormLogin.js"></script>
-    <script src="../codigo/entrenaConNosotros.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../codigo/validacionFormLogin.js"></script>
+    <script src="../codigo/planes.js"></script>
+    <script src="../codigo/entrenaConNosotros.js"></script>    
 </body>
 
 </html>

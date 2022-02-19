@@ -1,96 +1,160 @@
-class Factura {
-    constructor(codigoFactura, fechaFactura, horaFactura, plan, precio) {
-        this.codigoFactura = codigoFactura;
-        this.fechaFactura = fechaFactura;
-        this.horaFactura = horaFactura;
-        this.plan = plan;
-        this.precio = precio;
+const contenedorPlanes = document.getElementById("contenedor-plan");
+const tbodyContenidoTablaPlanes = document.getElementById("contenido-tabla");
+const btnMisPlanes = document.getElementById("btnMisPlanes");
+
+
+
+let carritoDeCompras = [];
+let carritoStorage = [];
+let nroPlan = 0;
+let precioTotal = document.getElementById("precioTotal");
+let contadorPlanes = document.getElementById("contadorPlanes");
+addEventListener('DOMContentLoaded', mostrarPlanes(planes));
+
+
+
+
+function carritoEntrenaConNosotros(planId){
+    let planRepetido = carritoDeCompras.find(plan => plan.id == planId);
+
+    if (planRepetido) {
+        planRepetido.cantidad++;
+        document.getElementById(`cantidad${planRepetido.id}`).innerHTML = `<p id=cantidad${planRepetido.id}>${planRepetido.cantidad}</p>`;
+        actualizarCarrito(carritoDeCompras);
+    }
+    else{
+        agregarPlanesAlListado(planId);
     }
 }
 
-let planesSeleccionados = [];
+function mostrarPlanes(array){
+    contenedorPlanes.innerHTML = "";
 
-let planElegido;
+    if (localStorage.getItem("carritoPlanes")) {
+        btnMisPlanes.disabled = false;
+        carritoStorage = JSON.parse(localStorage.getItem("carritoPlanes"));
+        carritoStorage.map((item) =>{
+            let tr = document.createElement('tr');
+            tr.className = 'contenido-tabla';
+            tr.innerHTML = `
+            <th scope="row">${nroPlan = nroPlan + 1}</th>
+            <td>${item.nombrePlan}</td>
+            <td>${item.precio}</td>
+            <td><p id=cantidad${item.id}>${item.cantidad}</p></td>
+            <td><a id="btnEliminarPlan${item.id}" class="btn btn-danger">Eliminar</a></td`
+                
+            tbodyContenidoTablaPlanes.appendChild(tr);
 
-let siguePidiendo = true;
+            actualizarCarrito(carritoStorage)
 
-while (siguePidiendo){
-    planElegido = parseInt(prompt(`\n1: Pase libre\n2: Plan personalizado\n3: Gimnasia adaptada\n4: Plan familiar\n0: Terminar selección`));
-    if (planElegido == 0) {
-        siguePidiendo = false;
-    }
-    planesSeleccionados.push(planElegido);
-    adquirirPlan(planesSeleccionados)
-};
+            let btnEliminar = document.getElementById(`btnEliminarPlan${item.id}`);
 
-function adquirirPlan(planElegido){
-    let carrito = [];
-    let nombrePlan;
-    let precioPlan;
-
-    for (let i = 0; i < planElegido.length; i++) {
-        if(planElegido[i] == 1){
-            nombrePlan = "Pase libre";
-            precioPlan = "3000";
-            comprarItem(carrito, i, nombrePlan, precioPlan);
-        }
-        else if (planElegido[i] == 2) {
-            nombrePlan = "Plan personalizado";
-            precioPlan = "3500";
-            comprarItem(carrito, i, nombrePlan, precioPlan)
-        }
-        else if (planElegido[i] == 3) {
-            nombrePlan = "Gimnasia adaptada";
-            precioPlan = "2000";
-            comprarItem(carrito, i, nombrePlan, precioPlan)
-        }
-        else if (planElegido[i] == 4) {
-            nombrePlan = "Plan familiar";
-            precioPlan = "8000";
-            comprarItem(carrito, i, nombrePlan, precioPlan)
-        }
-        else if (planElegido[i] == 0) {
-            planElegido.pop();
-        }
+            btnEliminar.addEventListener('click', ()=>{
+                let columnaEliminar = btnEliminar.parentElement;
+                columnaEliminar.parentElement.remove();
+            
+                carritoStorage = carritoStorage.filter(plan => plan.id != item.id);
+                actualizarCarrito(carritoStorage);
+            })
+        })
     }
 
-    carrito.forEach((factura) => {
-        console.log("")
-        console.log("Facturas: ",factura);
+    array.forEach(plan => {
+        let div = document.createElement('div');
+        div.className = 'col-md-6';
+        div.innerHTML = `
+        <div class="cards-wrapper">
+        <div class="card-grid-space">
+            <a class="card" style="background-color: yellow;">
+                <div class="info_plan">
+                    <h1>${plan.nombrePlan}</h1>
+                    <hr>
+                    <h2>$${plan.precio}</h2>
+                    <hr>
+                    <p>
+                        ${plan.descripcion}
+                    </p>
+                    <button type="button" class="btn btn-primary" id="btnAdquiriPlan${plan.id}">ADQUIRIR</button>
+                </div>
+            </a>
+        </div>
+    </div>
+        `
+
+        contenedorPlanes.appendChild(div);
+
+        let btnAdquirirPlan = document.getElementById(`btnAdquiriPlan${plan.id}`);
+        btnAdquirirPlan.addEventListener('click', () => {
+            btnMisPlanes.disabled = false;
+            carritoEntrenaConNosotros(plan.id)
+        })
     });
-
 }
 
+function agregarPlanesAlListado(id){
+    
+    let planesSeleccionados = planes.find(item => item.id == id);
+    // console.log(planesSeleccionados)
+    carritoDeCompras.push(planesSeleccionados);
+    carritoStorage.push(planesSeleccionados)
+    actualizarCarrito(carritoStorage);
 
 
+    let tr = document.createElement('tr');
+    tr.className = 'contenido-tabla';
+    tr.innerHTML = `
+    <th scope="row">${nroPlan = nroPlan + 1}</th>
+    <td>${planesSeleccionados.nombrePlan}</td>
+    <td>${planesSeleccionados.precio}</td>
+    <td><p id=cantidad${planesSeleccionados.id}>${planesSeleccionados.cantidad}</p></td>
+    <td><a id="btnEliminarPlan${planesSeleccionados.id}" class="btn btn-danger">Eliminar</a></td`
 
-function comprarItem(carrito, codigo, planSeleccionado, precioPlan) {
+    tbodyContenidoTablaPlanes.appendChild(tr);
 
+    let btnEliminar = document.getElementById(`btnEliminarPlan${planesSeleccionados.id}`);
 
+            btnEliminar.addEventListener('click', ()=>{
+                let columnaEliminar = btnEliminar.parentElement;
+                columnaEliminar.parentElement.remove();
+            
+                carritoStorage = carritoStorage.filter(item => item.id != planesSeleccionados.id);
+                actualizarCarrito(carritoStorage);
+            })
+}
 
-    let fecha = new Date();
-    let fechaActual = `${fecha.getDate() + 1}-${fecha.getMonth()}-${fecha.getFullYear()}`;
-    let horaActual = `${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
-    carrito.push(
+function realizarCompra(){
+    contenedorPlanes.innerHTML = "";
+    carritoDeCompras = [];
+    localStorage.removeItem("carritoPlanes");
+    contadorPlanes.innerText = "0";
+    mostrarPlanes(planes);
+    alertar("Adquiriste tus planes con exito !", "success", "Ya podes reservar los turnos, te esperamos")
+}
+
+function cancelarCompra(){
+    contenedorPlanes.innerHTML = "";
+    carritoDeCompras = [];
+    localStorage.removeItem("carritoPlanes");
+    contadorPlanes.innerText = "0";
+    mostrarPlanes(planes);
+    alertar("Compra cancelada !", "error", "Te seguimos esperando para entrenar")
+}
+
+function actualizarCarrito(carrito) {
+    contadorPlanes.innerText = carrito.reduce((acc, el) => acc + el.cantidad, 0);
+    precioTotal.innerText = carrito.reduce((acc, el) => acc + (el.precio * el.cantidad), 0);
+    if (contadorPlanes.innerText == 0) {
+        btnMisPlanes.disabled = true;
+    }
+    localStorage.setItem("carritoPlanes", JSON.stringify(carrito));
+}
+
+function alertar(tituloAlerta, tipoAlerta, mensajeAlerta){
+    swal.fire(
         {
-            codigo,
-            fechaActual,
-            horaActual,
-            planSeleccionado,
-            precioPlan
+            title: tituloAlerta,
+            text: mensajeAlerta,
+            icon: tipoAlerta
         }
-        )
+    )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
