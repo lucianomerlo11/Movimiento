@@ -28,22 +28,20 @@ function validarUsuario() {
     let usuario = document.getElementById("usuario").value;
     let password = document.getElementById("password").value;
     
-    if (usuario == "" || password == "") {
-        //No se ingresan datos
-        alert("No ha ingresado usuario o contraseña");
-    }
-    else if (!usuariosRegistrados.some((usr) => usr.nombreUsuario == usuario && usr.contrasenia == password)){
-        //El usuario no existe y no puede ingresar
-        alert("Usuario no registrado");
-    }
-    else{
-        //El usuario existe y puede ingresar
-    alert("Bienvenivo")        
-    }
-
+    (usuario == "" || password == "") ? alertar("Campos vacios","No ha ingresado usuario o contraseña", "error")
+    : (!usuariosRegistrados.some((usr) => usr.nombreUsuario == usuario && usr.contrasenia == password)) ? alertar("Usuario inexistente","Usuario no registrado", "error")
+    : alertar("Bienvenido","","success");    
 }
 
-
+function alertar(tituloAlerta, tipoAlerta, mensajeAlerta){
+    swal.fire(
+        {
+            title: tituloAlerta,
+            text: mensajeAlerta,
+            icon: tipoAlerta
+        }
+    )
+}
 
 
 

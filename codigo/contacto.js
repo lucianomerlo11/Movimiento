@@ -1,11 +1,7 @@
 
 function existenCamposVacios(nombreRemitente, apellidoRemitente, emailRemitente, asunto, mensaje){
-    if (nombreRemitente == "" || apellidoRemitente == "" || emailRemitente == "" || asunto == "" || mensaje == "") {
-        return true;
-    }
-    else{
-        return false;
-    }
+    (nombreRemitente == "" || apellidoRemitente == "" || emailRemitente == "" || asunto == "" || mensaje == "") ? true
+    : false;
 }
 
 function enviarMensaje(){
@@ -17,10 +13,17 @@ function enviarMensaje(){
 
     let resultado = existenCamposVacios(nombreRemitente, apellidoRemitente, emailRemitente, asunto, mensaje);
 
-    if (!resultado) {
-        alert("Pronto le enviaremos un email con la información que solicita")
-    }
-    else{
-        alert("Faltan llenar campos para enviar el mensaje");
-    }
+    !resultado ? alertar("Mensaje enviado","Pronto le enviaremos un email con la información que solicita", "success")
+    : alertar("Error al enviar mensaje", "Faltan llenar campos para enviar el mensaje", "error");
+    
+}
+
+function alertar(tituloAlerta, tipoAlerta, mensajeAlerta){
+    swal.fire(
+        {
+            title: tituloAlerta,
+            text: mensajeAlerta,
+            icon: tipoAlerta
+        }
+    )
 }

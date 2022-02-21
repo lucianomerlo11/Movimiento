@@ -63,26 +63,29 @@ function registrarAtleta(){
 
         tamanioArregloPosterior = atletas.length;
 
-        if (tamanioArregloPosterior > tamanioArregloAnterior) alert("Atleta registrado correctamente")
-        else alert("Error al registrar atleta")
+        tamanioArregloPosterior > tamanioArregloAnterior ? alertar("Registro exitoso", "Atleta registrado correctamente", "success")
+        : alertar("Registro fallido", "Error al registrar atleta", "error");
     }
 
 
 }
 
 function hayCamposDeUsuarioVacios(usr, pass){
-    if (usr == "" || pass == "") {
-        return true;
-    }
-    else{
-        return false;
-    }
+    (usr == "" || pass == "") ? true : false;
 }
 
 
 function elUsrEstaRegistrado(usrInput){
-    if(usuariosRegistrados.some((usr) => usr.nombreUsuario === usrInput)) return true;
-    else return false;
+    usuariosRegistrados.some((usr) => usr.nombreUsuario === usrInput) ? true : false;
 }
 
 
+function alertar(tituloAlerta, tipoAlerta, mensajeAlerta){
+    swal.fire(
+        {
+            title: tituloAlerta,
+            text: mensajeAlerta,
+            icon: tipoAlerta
+        }
+    )
+}

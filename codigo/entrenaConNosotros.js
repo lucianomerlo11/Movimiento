@@ -1,14 +1,17 @@
-const contenedorPlanes = document.getElementById("contenedor-plan");
 const tbodyContenidoTablaPlanes = document.getElementById("contenido-tabla");
-const btnMisPlanes = document.getElementById("btnMisPlanes");
+const contenedorPlanes          = document.getElementById("contenedor-plan");
+const contadorPlanes            = document.getElementById("contadorPlanes");
+const btnMisPlanes              = document.getElementById("btnMisPlanes");
+const precioTotal               = document.getElementById("precioTotal");
 
 
 
 let carritoDeCompras = [];
 let carritoStorage = [];
 let nroPlan = 0;
-let precioTotal = document.getElementById("precioTotal");
-let contadorPlanes = document.getElementById("contadorPlanes");
+
+
+
 addEventListener('DOMContentLoaded', mostrarPlanes(planes));
 
 
@@ -94,7 +97,6 @@ function mostrarPlanes(array){
 function agregarPlanesAlListado(id){
     
     let planesSeleccionados = planes.find(item => item.id == id);
-    // console.log(planesSeleccionados)
     carritoDeCompras.push(planesSeleccionados);
     carritoStorage.push(planesSeleccionados)
     actualizarCarrito(carritoStorage);
@@ -116,11 +118,11 @@ function agregarPlanesAlListado(id){
             btnEliminar.addEventListener('click', ()=>{
                 let columnaEliminar = btnEliminar.parentElement;
                 columnaEliminar.parentElement.remove();
-            
                 carritoStorage = carritoStorage.filter(item => item.id != planesSeleccionados.id);
                 actualizarCarrito(carritoStorage);
             })
-}
+        }
+            
 
 function realizarCompra(){
     contenedorPlanes.innerHTML = "";

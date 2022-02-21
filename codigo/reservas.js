@@ -1,34 +1,32 @@
 // INSTANCIAS DE CONSTANTES PARA INTERACTUAR CON EL DOM
 
-const contenedorTurno = document.getElementById("contenedor-turnos");
-const contenedorListado = document.getElementById("listado-contenedor");
-const btnMisReservas = document.getElementById("btnMisReservas");
+const btnRealizarReserva  = document.getElementById("btnRealizarReserva");
+const contenedorListado   = document.getElementById("listado-contenedor");
+const contenedorTurno     = document.getElementById("contenedor-turnos");
 const tbodyContenidoTabla = document.getElementById("contenido-tabla");
-const btnRealizarReserva = document.getElementById("btnRealizarReserva");
-const modalReservas = document.getElementById("modal-reservas");
-const guardarReservasLS = (key, value) => {localStorage.setItem(key, value)};
+const contadorReserva     = document.getElementById("contadorReserva");
+const btnMisReservas      = document.getElementById("btnMisReservas");
+const modalReservas       = document.getElementById("modal-reservas");
+
 
 
 // INSTANCIAS DE CONSTANTES PARA ESTABLECER FILTROS
-const select_dia = document.getElementById("dia");
-const select_turno = document.getElementById("turno");
 const select_tipoClase = document.getElementById("tipoClase");
-const select_hora =  document.getElementById("hora");
+const select_turno     = document.getElementById("turno");
+const select_hora      =  document.getElementById("hora");
+const select_dia       = document.getElementById("dia");
 
 // INSTANCIAS DE VARIABLES PARA REALIZAR CALCULOS
 
 let listadoReservas = [];
-let nroReserva = 0;
-let contadorReserva = document.getElementById("contadorReserva");
-let carritoStorage = [];
+let carritoStorage  = [];
+let nroReserva      = 0;
 
 
 
 addEventListener('DOMContentLoaded', mostrarTurnos(turnos))
 
 // FILTROS
-
-// UTILIZAR LS CON LOS SELECT
 
 select_turno.addEventListener('change', ()=>{
     select_hora.innerHTML = "";
@@ -63,84 +61,41 @@ select_dia.addEventListener('change',()=>{
     
     let diaSeleccionado = select_dia.value;
     
-    if (diaSeleccionado == "lunes") {
-        mostrarTurnos(turnos.filter(item => item.dia == "Lunes"));
-    }
-    else if (diaSeleccionado == "martes") {
-        mostrarTurnos(turnos.filter(item => item.dia == "Martes"));
-    }
-    else if (diaSeleccionado == "miercoles") {
-        mostrarTurnos(turnos.filter(item => item.dia == "Miercoles"));
-    }
-    else if (diaSeleccionado == "jueves") {
-        mostrarTurnos(turnos.filter(item => item.dia == "Jueves"));
-    }
-    else if (diaSeleccionado == "viernes") {
-        mostrarTurnos(turnos.filter(item => item.dia == "Viernes"));
-    }
-    else{
-        mostrarTurnos(turnos);
-    }
+      diaSeleccionado == "lunes"     ? mostrarTurnos(turnos.filter(item => item.dia == "Lunes")) 
+    : diaSeleccionado == "martes"    ? mostrarTurnos(turnos.filter(item => item.dia == "Martes"))
+    : diaSeleccionado == "miercoles" ? mostrarTurnos(turnos.filter(item => item.dia == "Miercoles"))
+    : diaSeleccionado == "jueves"    ? mostrarTurnos(turnos.filter(item => item.dia == "Jueves"))
+    : diaSeleccionado == "viernes"   ? mostrarTurnos(turnos.filter(item => item.dia == "Viernes"))
+    : mostrarTurnos(turnos);
+
 })
 
 select_tipoClase.addEventListener('change',()=>{
     
     let claseSeleccionada = select_tipoClase.value;
     
-    if (claseSeleccionada == "FUNCIONAL") {
-        mostrarTurnos(turnos.filter(item => item.clase == "Funcional"));
-    }
-    else if (claseSeleccionada == "OCR") {
-        mostrarTurnos(turnos.filter(item => item.clase == "OCR"));
-    }
-    else if (claseSeleccionada == "ADAPTADA") {
-        mostrarTurnos(turnos.filter(item => item.clase == "Adaptada"));
-    }
-    else if (claseSeleccionada == "ZUMBA") {
-        mostrarTurnos(turnos.filter(item => item.clase == "Zumba"));
-    }
-    else if (claseSeleccionada == "FITBOX") {
-        mostrarTurnos(turnos.filter(item => item.clase == "Fit Box"));
-    }
-    else{
-        mostrarTurnos(turnos);
-    }
+      claseSeleccionada == "FUNCIONAL" ? mostrarTurnos(turnos.filter(item => item.clase == "Funcional"))
+    : claseSeleccionada == "OCR"       ? mostrarTurnos(turnos.filter(item => item.clase == "OCR"))
+    : claseSeleccionada == "ADAPTADA"  ? mostrarTurnos(turnos.filter(item => item.clase == "Adaptada"))
+    : claseSeleccionada == "ZUMBA"     ? mostrarTurnos(turnos.filter(item => item.clase == "Zumba"))
+    : claseSeleccionada == "FITBOX"    ? mostrarTurnos(turnos.filter(item => item.clase == "Fit Box"))
+    : mostrarTurnos(turnos);
 })
 
 select_hora.addEventListener('change',()=>{
     
     let horaSeleccionada = select_hora.value;
     
-    if (horaSeleccionada == "8") {
-        mostrarTurnos(turnos.filter(item => item.horario == "8:00 - 9:00"));
-    }
-    else if (horaSeleccionada == "9") {
-        mostrarTurnos(turnos.filter(item => item.horario == "9:00 - 10:00"));
-    }
-    else if (horaSeleccionada == "10") {
-        mostrarTurnos(turnos.filter(item => item.horario == "10:00 - 11-00"));
-    }
-    else if (horaSeleccionada == "16") {
-        mostrarTurnos(turnos.filter(item => item.horario == "16:00 - 17-00"));
-    }
-    else if (horaSeleccionada == "17") {
-        mostrarTurnos(turnos.filter(item => item.horario == "17:00 - 18-00"));
-    }
-    else if (horaSeleccionada == "18") {
-        mostrarTurnos(turnos.filter(item => item.horario == "18:00 - 19-00"));
-    }
-    else if (horaSeleccionada == "19") {
-        mostrarTurnos(turnos.filter(item => item.horario == "19:00 - 20-00"));
-    }
-    else if (horaSeleccionada == "20") {
-        mostrarTurnos(turnos.filter(item => item.horario == "20:00 - 21-00"));
-    }
-    else if (horaSeleccionada == "21") {
-        mostrarTurnos(turnos.filter(item => item.horario == "21:00 - 22-00"));
-    }
-    else{
-        mostrarTurnos(turnos);
-    }
+      horaSeleccionada == "8"  ? mostrarTurnos(turnos.filter(item => item.horario == "8:00 - 9:00"))
+    : horaSeleccionada == "9"  ? mostrarTurnos(turnos.filter(item => item.horario == "9:00 - 10:00"))
+    : horaSeleccionada == "10" ? mostrarTurnos(turnos.filter(item => item.horario == "10:00 - 11-00"))
+    : horaSeleccionada == "16" ? mostrarTurnos(turnos.filter(item => item.horario == "16:00 - 17-00"))
+    : horaSeleccionada == "17" ? mostrarTurnos(turnos.filter(item => item.horario == "17:00 - 18-00"))
+    : horaSeleccionada == "18" ? mostrarTurnos(turnos.filter(item => item.horario == "18:00 - 19-00"))
+    : horaSeleccionada == "19" ? mostrarTurnos(turnos.filter(item => item.horario == "19:00 - 20-00"))
+    : horaSeleccionada == "20" ? mostrarTurnos(turnos.filter(item => item.horario == "20:00 - 21-00"))
+    : horaSeleccionada == "21" ? mostrarTurnos(turnos.filter(item => item.horario == "21:00 - 22-00"))
+    : mostrarTurnos(turnos);
 })    
 
 
@@ -153,9 +108,6 @@ function mostrarTurnos(array) {
     if (localStorage.getItem("carrito")) {
         btnMisReservas.disabled = false;
         carritoStorage = JSON.parse(localStorage.getItem("carrito"));
-        // CAMBIOOOOO
-        console.log(carritoStorage)
-        // CAMBIOOOOO
         carritoStorage.map((reserva)=>{
         agregarItemCarrito(reserva);
         actualizarCarrito(carritoStorage);
@@ -194,26 +146,18 @@ function mostrarTurnos(array) {
         btnReservar.addEventListener("click", () =>{
             btnMisReservas.disabled = false;
             let reservasAux = JSON.parse(localStorage.getItem("carrito"));
+            
             if (reservasAux) {
                 let resultado = reservasAux.some((turnoReservado) => turno.id == turnoReservado.id);
-                if (resultado) {
-                    alertar("Ups!", "error", "Ya tiene una reserva para este turno");
-                    
-                }
-                else{
-                    agregarReservasAlListado(turno.id); 
-                }
+                resultado ? alertar("Ups!", "error", "Ya tiene una reserva para este turno") : agregarReservasAlListado(turno.id); 
             }
             else{
                 agregarReservasAlListado(turno.id); 
             }
-
-             
         })
     });
 }
 
-// CAMBIOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 
 function agregarReservasAlListado(id){
 
@@ -257,14 +201,19 @@ function cancelarReserva(){
 }
 
 function agregarItemCarrito(reserva){
+
+    // DESESTRUCTURACIÓN DE OBJETOS
+
+    let {id, dia, horario, clase} = reserva;
+
     let tr = document.createElement('tr');
     tr.className = 'contenido-tabla';
     tr.innerHTML = `
     <th scope="row">${nroReserva++}</th>
-    <td>${reserva.dia}</td>
-    <td>${reserva.horario}</td>
-    <td>${reserva.clase}</td>
-    <td><a id="btnEliminarReserva${reserva.id}" class="btn btn-danger">Eliminar</a></td>
+    <td>${dia}</td>
+    <td>${horario}</td>
+    <td>${clase}</td>
+    <td><a id="btnEliminarReserva${id}" class="btn btn-danger">Eliminar</a></td>
     `;
     tbodyContenidoTabla.appendChild(tr);
 }
