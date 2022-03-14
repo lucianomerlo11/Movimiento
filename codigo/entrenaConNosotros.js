@@ -11,7 +11,6 @@ let carritoStorage = [];
 let nroPlan = 0;
 
 
-
 addEventListener('DOMContentLoaded', mostrarPlanes(planes));
 
 

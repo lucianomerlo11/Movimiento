@@ -18,7 +18,29 @@ class Atleta{
         }
 }
 
+
 let atletas = [];
+
+const select_nacionalidad = document.getElementById("nacionalidad");
+const urlAPI = "https://restcountries.com/v2/all"; 
+
+const obtenerPaises = async (urlAPI) => {
+    try {
+        let res = await fetch(urlAPI);
+        let paises = await res.json();
+        
+        paises.map(pais =>{
+            let opt = document.createElement('option');
+            opt.innerHTML = pais.name;
+            select_nacionalidad.appendChild(opt);
+        })
+        }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+addEventListener("load", obtenerPaises(urlAPI));
 
 function registrarAtleta(){
 
@@ -89,3 +111,5 @@ function alertar(tituloAlerta, tipoAlerta, mensajeAlerta){
         }
     )
 }
+
+
